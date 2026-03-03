@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Securitas | Portfolio Rehan Taufikurohman</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <div id="xray-scanner" class="xray-scanner"></div>
+    <div class="watermark-layer">
+        <span style="top: 15%; left: 5%;">SYS.NODE: 192.168.0.144 // ENCRYPTED</span>
+        <span style="top: 45%; right: 10%;">SAT-LINK: 45°N 12°E // ACTIVE</span>
+        <span style="bottom: 20%; left: 30%;">OVERWATCH PROTOCOL: OMEGA</span>
+        <span style="top: 80%; right: 25%;">DARK POOL ROUTING... [SECURE]</span>
+        <span
+            style="top: 35%; left: 60%; transform: rotate(-45deg); font-size: 40px; color: rgba(0, 243, 255, 0.08);">RESTRICTED
+            ACCESS</span>
+    </div>
+    <div id="gateway-screen" class="gateway-screen">
+        <div class="gateway-bg-grid"></div>
+        <div class="gateway-content">
+            <h1 class="gateway-title">MG Securitas</h1>
+            <p class="gateway-subtitle">PRIVATE WEALTH TERMINAL // NODE 01</p>
+            <div class="gateway-divider"></div>
+            <button class="gateway-btn" onclick="openBiometric('SYSTEM LOGIN')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    style="margin-right: 10px;">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                INITIATE SECURE ACCESS
+            </button>
+            <p class="gateway-footer">
+                <span class="status-dot" style="animation: none; box-shadow: none;"></span> ENCRYPTED CONNECTION
+                ESTABLISHED
+            </p>
+        </div>
+    </div>
+
+    <div id="secure-app" style="display: none; width: 100%;">
+        <div class="container">
+
+            <nav class="sidebar">
+                <div class="logo">MG <span>Securitas</span></div>
+                <ul class="nav-links">
+                    <li class="active" id="nav-dashboard" onclick="switchView('dashboard')">Dashboard</li>
+                    <li id="nav-market" onclick="switchView('market')">Market</li>
+                    <li id="nav-history" onclick="switchView('history')">History</li>
+                    <li id="nav-settings" onclick="switchView('settings')">Settings</li>
+                    <li id="nav-analytics" onclick="switchView('analytics')">Analytics</li>
+                    <li id="nav-security" onclick="switchView('security')"><span style="color: #ff3b30; margin-right: 5px;">⚠</span> Security</li>
+                </ul>
+
+                <div class="lang-switch" style="margin-bottom: 25px; padding-left: 20px;">
+                    <span class="lang-label active" id="label-en">EN</span>
+                    <label class="switch">
+                        <input type="checkbox" id="lang-toggle" onchange="toggleLanguage()">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="lang-label" id="label-id">ID</span>
+                </div>
+
+                <div class="ambient-bg">
+                    <div class="orb orb-1"></div>
+                    <div class="orb orb-2"></div>
+                    <div class="orb orb-3"></div>
+                </div>
+
+                <div class="theme-switcher">
+                    <p>Bespoke Theme</p>
+                    <div class="theme-dots">
+                        <div class="theme-dot" style="background: #d4af37;" onclick="changeTheme('#d4af37')"
+                            title="Royal Gold"></div>
+                        <div class="theme-dot" style="background: #2ecc71;" onclick="changeTheme('#2ecc71')"
+                            title="Emerald Green"></div>
+                        <div class="theme-dot" style="background: #3498db;" onclick="changeTheme('#3498db')"
+                            title="Sapphire Blue"></div>
+                        <div class="theme-dot" style="background: #e0e0e0;" onclick="changeTheme('#e0e0e0')"
+                            title="Platinum Silver"></div>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="content">
+                <header>
+                    <div class="user-info">
+                        <h1>Welcome Back,</h1>
+                        <p class="name">Rehan Taufikurohman Al Fauzi</p>
+                    </div>
+
+                    <div class="header-search">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="asset-search" placeholder="Deep Scan Ticker (e.g. TSLA)..."
+                            onkeypress="handleAssetSearch(event)">
+                    </div>
+                    <div class="header-right">
+                        <div class="live-clock">
+                            <span class="pulse-dot"></span>
+                            <span id="current-date">-- --- ----</span> |
+                            <span id="current-time" class="time-glow">--:--:--</span> WIB
+                        </div>
+                        <div class="premium-id-container">
+                            <div class="premium-id-card">
+                                <div class="id-face id-front">
+                                    <span class="holo-glare"></span>
+                                    <div class="id-logo">MG SECURITAS</div>
+                                    <div class="id-tier">PREMIUM PASS</div>
+                                    <div class="id-name">REHAN TAUFIKUROHMAN AL FAUZI</div>
+                                </div>
+                                <div class="id-face id-back">
+                                    <div class="id-photo"><img src="pp2.png" alt="User ID Photo"></div>
+                                    <div class="id-details">
+                                        <p>ID: MGS-8829</p>
+                                        <div class="qr-code-mock"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-download" onclick="downloadDashboard()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg> Download Report
+                        </button>
+                    </div>
+                </header>
+
+                <div class="main-content">
+
+                    <div id="dashboard-view" class="view-section">
+                        <div class="intel-feed-container sensitive-data">
+                            <div class="intel-feed-label">
+                                <span class="pulse-dot"
+                                    style="background: #ff3b30; box-shadow: 0 0 8px #ff3b30;"></span>
+                                <span class="translatable" data-en="GLOBAL INTEL" data-id="INTEL GLOBAL">GLOBAL
+                                    INTEL</span>
+                            </div>
+                            <div class="intel-feed-text" id="intel-feed-text">
+                                > Intercepting secure comms...
+                            </div>
+                        </div>
+                        <section class="balance-card">
+                            <div class="card-content">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                    <p class="translatable" data-en="Total Portfolio Value"
+                                        data-id="Total Nilai Portofolio"
+                                        style="color: var(--text-dim); font-size: 14px; font-weight: 600;">Total
+                                        Portfolio Value</p>
+                                    <p style="color: var(--text-dim); font-size: 13px;">
+                                        <span class="translatable" data-en="Total Unrealized Profit:"
+                                            data-id="Total Keuntungan Berjalan:">Total Unrealized Profit:</span>
+                                        <span id="total-profit-val" class="money" data-value="192132000"
+                                            style="color: var(--green); font-weight: bold;">Rp 192.132.000</span>
+                                    </p>
+                                    <span class="eye-icon" onclick="toggleVisibility()" title="Sembunyikan Saldo">
+                                        <svg id="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <svg id="eye-closed" style="display:none;" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path
+                                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                                            </path>
+                                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="currency-switch">
+                                    <span class="curr-label active" id="label-idr">IDR</span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="currency-toggle" onchange="toggleCurrency()">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span class="curr-label" id="label-usd">USD</span>
+                                </div>
+                                <h2 id="total-balance" class="sensitive-data money" data-value="1601100000"
+                                    style="font-size: 42px; margin-bottom: 15px;">Rp 1.601.100.000</h2>
+                                <div class="profit-highlight sensitive-data"
+                                    style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                                    <span id="total-profit-pct"
+                                        style="background: rgba(0, 255, 136, 0.1); padding: 4px 10px; border-radius: 6px; font-weight: bold;">+12.45%</span>
+                                </div>
+                                <div class="yield-engine sensitive-data">
+                                    <div class="yield-header">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffd700"
+                                            stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        <span class="translatable" data-en="ESTIMATED PASSIVE YIELD (4.5% APY)"
+                                            data-id="ESTIMASI PENDAPATAN PASIF (4.5% APY)">ESTIMATED PASSIVE YIELD (4.5%
+                                            APY)</span>
+                                    </div>
+                                    <div class="yield-data">
+                                        <div class="yield-col">
+                                            <p class="translatable" data-en="Annual Cash Flow"
+                                                data-id="Arus Kas Tahunan">Annual Cash Flow</p>
+                                            <h4 class="money" data-value="72049500">Rp 72.049.500</h4>
+                                        </div>
+                                        <div class="yield-col" style="text-align: right;">
+                                            <p class="translatable" data-en="Monthly Average"
+                                                data-id="Rata-rata Bulanan">Monthly Average</p>
+                                            <h4 class="money" data-value="6004125">Rp 6.004.125</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wallet-actions"
+                                    style="display: flex; gap: 15px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                                    <button class="btn-wallet deposit" onclick="openBiometric('Deposit')"><svg
+                                            width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path d="M12 5v14M5 12h14" />
+                                        </svg> Deposit</button>
+                                    <button class="btn-wallet withdraw" onclick="initiateOffshoreTransfer()"><svg
+                                            width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path d="M5 12h14" />
+                                        </svg> Withdraw</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="analytics-row">
+                            <div class="chart-container main-chart">
+                                <div class="chart-header"
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                    <h3 style="margin: 0;">Portfolio Performance</h3>
+                                    <div class="ai-sentiment" id="ai-sentiment-badge"><span class="ai-dot"
+                                            id="ai-dot"></span><span id="ai-text">AI Analyzing...</span></div>
+                                </div>
+                                <div class="custom-chart-wrapper">
+                                    <div class="custom-chart-main">
+                                        <div id="custom-grid" class="custom-grid-container"></div>
+                                        <div id="custom-candlestick" class="custom-candle-container"></div>
+                                    </div>
+                                    <div id="custom-y-axis" class="custom-y-axis"></div>
+                                </div>
+                                <div id="custom-x-axis" class="custom-x-axis"></div>
+                            </div>
+                            <div class="chart-container pie-chart">
+                                <h3>Asset Allocation</h3>
+                                <canvas id="allocationChart"></canvas>
+                            </div>
+                        </section>
+
+                        <section class="global-operations">
+                            <h3>Global Market Nodes</h3>
+                            <div class="map-container">
+                                <div class="map-bg"></div>
+                                <svg class="map-lines" width="100%" height="100%" style="color: var(--accent);">
+                                    <line x1="84.2%" y1="68.5%" x2="24.5%" y2="24%" class="connection"
+                                        stroke="currentColor" />
+                                    <line x1="84.2%" y1="68.5%" x2="46%" y2="15%" class="connection"
+                                        stroke="currentColor" />
+                                    <line x1="84.2%" y1="68.5%" x2="62.5%" y2="38%" class="connection"
+                                        stroke="currentColor" />
+                                    <line x1="84.2%" y1="68.5%" x2="79%" y2="31%" class="connection"
+                                        stroke="currentColor" />
+                                    <line x1="84.2%" y1="68.5%" x2="85.5%" y2="28%" class="connection"
+                                        stroke="currentColor" />
+                                    <line x1="84.2%" y1="68.5%" x2="88.5%" y2="76%" class="connection"
+                                        stroke="currentColor" />
+                                </svg>
+                                <div class="node us" tooltip="Wall Street, US"
+                                    onclick="activateNode('WALL STREET', '$1.2T', 'SEC - Level 4', 'STABLE')"></div>
+                                <div class="node uk" tooltip="LSE, UK"
+                                    onclick="activateNode('LONDON', '$850B', 'FCA - Level 3', 'VOLATILE')"></div>
+                                <div class="node uae" tooltip="DFM, UAE"
+                                    onclick="activateNode('DUBAI', '$420B', 'DFSA - Level 2', 'ENCRYPTED')"></div>
+                                <div class="node chn" tooltip="SSE, China"
+                                    onclick="activateNode('SHANGHAI', '$2.1T', 'CSRC - Level 5', 'MONITORED')"></div>
+                                <div class="node jpn" tooltip="Nikkei, Japan"
+                                    onclick="activateNode('TOKYO', '$1.5T', 'FSA - Level 3', 'ANOMALY DETECTED')"></div>
+                                <div class="node aus" tooltip="ASX, Australia"
+                                    onclick="activateNode('SYDNEY', '$680B', 'ASIC - Level 2', 'OPTIMAL')"></div>
+                                <div class="node hq" tooltip="HQ - East Java, ID"
+                                    onclick="activateNode('MAIN HQ', 'UNDISCLOSED', 'GHOST PROTOCOL', 'SECURE')"></div>
+
+                                <div class="intel-panel" id="intel-panel">
+                                    <div class="intel-header">
+                                        <h4 id="intel-title">INTERCEPTING...</h4>
+                                        <span class="close-intel" onclick="closeNode()">[✕]</span>
+                                    </div>
+                                    <div class="intel-content">
+                                        <div class="intel-row"><span>DARK POOL LIQUIDITY:</span> <strong id="intel-liq"
+                                                class="cyan-text">---</strong></div>
+                                        <div class="intel-row"><span>REGULATORY OVERWATCH:</span> <strong
+                                                id="intel-reg">---</strong></div>
+                                        <div class="intel-row"><span>NETWORK STATUS:</span> <strong id="intel-stat"
+                                                class="warn-text">---</strong></div>
+                                        <div class="intel-log" id="intel-log">> Awaiting connection...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="classified-watchlist">
+                            <div class="watchlist-header">
+                                <h3><span class="hazard-icon">⚠</span> TOP SECRET // REDACTED TARGETS</h3>
+                                <span class="clearance-level">CLEARANCE: LEVEL 6 ONLY</span>
+                            </div>
+                            <div class="watchlist-table">
+                                <div class="w-row header">
+                                    <span>OPERATION</span><span>TARGET ASSET</span><span>OBJECTIVE</span><span>EST.
+                                        CAPITAL</span>
+                                </div>
+                                <div class="w-row">
+                                    <span class="op-name">NIGHTFALL</span>
+                                    <span class="redacted-text" data-text="NVIDIA CORP (NVDA)"></span>
+                                    <span class="redacted-text" data-text="HOSTILE TAKEOVER"></span>
+                                    <span class="redacted-text" data-text="$2.5B USD"></span>
+                                </div>
+                                <div class="w-row">
+                                    <span class="op-name">BLACK SWAN</span>
+                                    <span class="redacted-text" data-text="SILVER (XAG) SPOT"></span>
+                                    <span class="redacted-text" data-text="MARKET MANIPULATION"></span>
+                                    <span class="redacted-text" data-text="Rp 850 Miliar"></span>
+                                </div>
+                                <div class="w-row">
+                                    <span class="op-name">WINTER MUTE</span>
+                                    <span class="redacted-text" data-text="TOYOTA SUPRA MK5 LBWK"></span>
+                                    <span class="redacted-text" data-text="PRIVATE ACQUISITION"></span>
+                                    <span class="redacted-text" data-text="OFF THE BOOKS"></span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="recent-transactions">
+                            <h3
+                                style="color: var(--text-main); margin-bottom: 15px; font-size: 14px; letter-spacing: 1px;">
+                                Recent Activity & History</h3>
+                            <div class="card" style="padding: 0;">
+                                <table
+                                    style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); color: #888;">
+                                        <th style="padding: 15px;">DATE</th>
+                                        <th style="padding: 15px;">ACTION</th>
+                                        <th style="padding: 15px;">ASSET/DESTINATION</th>
+                                        <th style="padding: 15px;">AMOUNT</th>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.02);">
+                                        <td style="padding: 15px;">26 Feb 2026</td>
+                                        <td style="padding: 15px; color: #00ff88; font-weight: bold;">BUY</td>
+                                        <td style="padding: 15px; color: #fff;">BBCA - Local Market</td>
+                                        <td style="padding: 15px; color: #fff;">Rp 125.000.000</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.02);">
+                                        <td style="padding: 15px;">24 Feb 2026</td>
+                                        <td style="padding: 15px; color: #ff3b30; font-weight: bold;">WITHDRAW</td>
+                                        <td style="padding: 15px; color: #fff;">Swiss Bank Node 01</td>
+                                        <td style="padding: 15px; color: #fff;">Rp 500.000.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 15px;">21 Feb 2026</td>
+                                        <td style="padding: 15px; color: #00f3ff; font-weight: bold;">DIVIDEND</td>
+                                        <td style="padding: 15px; color: #fff;">NVDA Holdings</td>
+                                        <td style="padding: 15px; color: #fff;">Rp 34.500.000</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="alternative-assets" style="margin-top: 30px; margin-bottom: 30px;">
+                            <div class="watchlist-header"
+                                style="border-bottom-color: #d4af37; background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, transparent 100%);">
+                                <h3 style="color: #d4af37;"><span class="pulse-dot"
+                                        style="background: #d4af37; box-shadow: 0 0 8px #d4af37;"></span> PHYSICAL &
+                                    ALTERNATIVE ASSETS</h3>
+                                <span class="clearance-level" style="color: #d4af37; border-color: #d4af37;">VAULT
+                                    SECURED</span>
+                            </div>
+                            <div class="assets-table-container"
+                                style="background: rgba(10,10,10,0.8); border: 1px solid #222; border-top: none; border-radius: 0 0 8px 8px; padding: 0;">
+                                <table
+                                    style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; font-family: 'Courier New', monospace;">
+                                    <tr class="alt-asset-row"
+                                        style="background: rgba(0, 255, 136, 0.05); border-left: 2px solid #00ff88;"
+                                        onclick="openAssetModal('bmw')">
+                                        <td style="padding: 15px; color: #aaa;">🏎️ PERFORMANCE</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">BMW M4 G82
+                                            Competition</td>
+                                        <td style="padding: 15px; color: #00ff88;" class="money"
+                                            data-value="2800000000">Rp 2.800.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-garaged">SECURED /
+                                                GARAGED</span></td>
+                                    </tr>
+                                    <tr class="alt-asset-row" onclick="openAssetModal('gtr')">
+                                        <td style="padding: 15px; color: #aaa;">🚗 EXOTIC JDM</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">Nissan GT-R R35
+                                            Liberty Walk</td>
+                                        <td style="padding: 15px; color: #ffcc00;" class="money"
+                                            data-value="4500000000">Rp 4.500.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-target">ACQUISITION
+                                                TARGET</span></td>
+                                    </tr>
+                                    <tr class="alt-asset-row" onclick="openAssetModal('house')">
+                                        <td style="padding: 15px; color: #aaa;">🏛️ REAL ESTATE</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">Private Residence
+                                            (Smart Home)</td>
+                                        <td style="padding: 15px; color: #ffcc00;" class="money"
+                                            data-value="3500000000">Rp 3.500.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-target">ACQUISITION
+                                                TARGET</span></td>
+                                    </tr>
+                                    <tr class="alt-asset-row" onclick="openAssetModal('svj')">
+                                        <td style="padding: 15px; color: #aaa;">🏎️ HYPERCAR</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">Lamborghini Aventador
+                                            SVJ</td>
+                                        <td style="padding: 15px; color: #ffcc00;" class="money"
+                                            data-value="16500000000">Rp 16.500.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-target">ACQUISITION
+                                                TARGET</span></td>
+                                    </tr>
+                                    <tr class="alt-asset-row" onclick="openAssetModal('supra')">
+                                        <td style="padding: 15px; color: #aaa;">🚗 EXOTIC JDM</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">Toyota Supra MK5 LBWK
+                                        </td>
+                                        <td style="padding: 15px; color: #ffcc00;" class="money"
+                                            data-value="1650000000">Rp 1.650.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-target">ACQUISITION
+                                                TARGET</span></td>
+                                    </tr>
+                                    <tr class="alt-asset-row" onclick="openAssetModal('camera')">
+                                        <td style="padding: 15px; color: #aaa;">📷 PRO GEAR</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">Sony 8K Rig + 24MP
+                                            Fisheye Lens</td>
+                                        <td style="padding: 15px; color: #ffcc00;" class="money" data-value="250000000">
+                                            Rp 250.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-target">ACQUISITION
+                                                TARGET</span></td>
+                                    </tr>
+                                    <tr class="alt-asset-row" onclick="openAssetModal('rolex')">
+                                        <td style="padding: 15px; color: #aaa;">⌚ HOROLOGY</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">Rolex Daytona
+                                            Cosmograph</td>
+                                        <td style="padding: 15px; color: #ffcc00;" class="money" data-value="600000000">
+                                            Rp 600.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-target">ACQUISITION
+                                                TARGET</span></td>
+                                    </tr>
+                                    <tr class="alt-asset-row" onclick="openAssetModal('patek')">
+                                        <td style="padding: 15px; color: #aaa;">⌚ HOROLOGY</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">Patek Philippe
+                                            Nautilus 5711</td>
+                                        <td style="padding: 15px; color: #ffcc00;" class="money"
+                                            data-value="1800000000">Rp 1.800.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-target">ACQUISITION
+                                                TARGET</span></td>
+                                    </tr>
+                                    <tr class="alt-asset-row" onclick="openAssetModal('jet')">
+                                        <td style="padding: 15px; color: #aaa;">✈️ AVIATION</td>
+                                        <td style="padding: 15px; color: #fff; font-weight: bold;">Gulfstream G280
+                                            Private Jet</td>
+                                        <td style="padding: 15px; color: #ffcc00;" class="money"
+                                            data-value="350000000000">Rp 350.000.000.000</td>
+                                        <td style="padding: 15px;"><span class="status-badge status-target">ACQUISITION
+                                                TARGET</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="premium-card-section" style="margin-top: 30px; margin-bottom: 30px;">
+                            <div class="watchlist-header" style="border-bottom-color: #d4af37; background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, transparent 100%);">
+                                <h3 style="color: #d4af37;"><span class="crown-icon" style="margin-right:8px;">&#x265B;&#xFE0E;</span> OMEGA EXCLUSIVE: OBSIDIAN CARD</h3>
+                                <span class="clearance-level" style="color: #d4af37; border-color: #d4af37;">NO LIMIT</span>
+                            </div>
+                            
+                            <div class="black-card-container">
+                                <div class="black-card" id="obsidian-card">
+                                    <div class="card-chip"></div>
+                                    <div class="card-logo">OBSIDIAN</div>
+                                    <div class="card-number" id="card-num">**** **** **** 8888</div>
+                                    <div class="card-details">
+                                        <div class="card-holder">REHAN T.A.F</div>
+                                        <div class="card-expiry">VALID THRU <br> <span style="font-size: 14px; color: #d4af37;">∞/∞</span></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-controls">
+                                    <p style="color: #888; font-size: 10px; font-family: 'Courier New', monospace; margin: 0 0 10px 0;">> CARD NETWORK LINK SECURED.<br>> AVAILABLE CREDIT: <span style="color: #00ff88;">UNLIMITED</span></p>
+                                    
+                                    <button class="cc-btn" onclick="generateBurnerCard()">> GENERATE VIRTUAL BURNER</button>
+                                    <button class="cc-btn alert-btn" onclick="toggleCardFreeze()" id="btn-freeze">> INITIATE CARD FREEZE</button>
+                                    <button class="cc-btn gold-btn" onclick="if(typeof playPremiumClick === 'function') playPremiumClick();">> REQUEST JET CHARTER</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="stock-list">
+                            <h3>Asset Allocation Detail</h3>
+                            <div class="table-container">
+                                <table id="stock-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ticker</th>
+                                            <th>Shares</th>
+                                            <th>Avg. Price</th>
+                                            <th>Current Value</th>
+                                            <th>Profit/Loss</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="stock-body"></tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="dream-asset-card" style="margin-top: 40px;">
+                            <div class="asset-bg"></div>
+                            <div class="asset-content">
+                                <div class="asset-header">
+                                    <h3>Portfolio Goal: LBWK Nissan GT-R R35</h3>
+                                    <span class="target-price">Target: Rp 4.500.000.000</span>
+                                </div>
+                                <p class="asset-desc">Lensa Fisheye • Resolusi 24MP • Obsidian Dark Mode</p>
+                                <div class="progress-container">
+                                    <div class="progress-bar" id="dream-progress"></div>
+                                </div>
+                                <div class="progress-stats">
+                                    <span id="current-saved">Terkumpul: Rp 0</span>
+                                    <span id="progress-pct" class="time-glow">0%</span>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                    <div id="market-view" class="view-section" style="display: none;">
+                        <div class="history-header">
+                            <h2>Dark Pool Terminal</h2>
+                            <p>INSTITUTIONAL LIQUIDITY NETWORK // HIGH-FREQUENCY ROUTING</p>
+                        </div>
+
+                        <div class="deal-flow-container" style="margin-top: 30px; margin-bottom: 30px;">
+                            <div class="news-header" style="border-bottom-color: #d4af37; background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, transparent 100%); border-radius: 8px 8px 0 0;">
+                                <h3 style="color: #d4af37; letter-spacing: 2px;"><span class="icon">✧</span> EXCLUSIVE DEAL FLOW (PRE-IPO)</h3>
+                                <span class="live-indicator" style="border-color: #d4af37; color: #d4af37; animation: pulseBullish 2s infinite;">CONFIDENTIAL</span>
+                            </div>
+                            
+                            <div class="deal-list" style="background: rgba(10,10,10,0.8); border: 1px solid #222; border-top: none; border-radius: 0 0 8px 8px; padding: 15px 25px;">
+                                
+                                <div class="deal-item">
+                                    <div class="deal-info">
+                                        <h4>SpaceX (Series H) <span class="sector-badge">AEROSPACE</span></h4>
+                                        <p>> Target: Interplanetary Transport & Starlink IPO.</p>
+                                        <div class="deal-metrics">
+                                            <span>MIN. TICKET: $1.5M</span>
+                                            <span>AVAILABLE: <b style="color:#00ff88;">$4.2M</b></span>
+                                        </div>
+                                        <div class="allocation-bar"><div class="allocation-fill" style="width: 88%; background: #ffcc00;"></div></div>
+                                        <p style="font-size: 9px; text-align: right; margin-top: 5px; color: #ffcc00; font-weight: bold; font-family: 'Courier New', monospace;">88% SUBSCRIBED</p>
+                                    </div>
+                                    <button class="commit-btn" onclick="commitCapital(this, 'SpaceX', '$1.5M')">COMMIT CAPITAL</button>
+                                </div>
+
+                                <div class="deal-item">
+                                    <div class="deal-info">
+                                        <h4>OpenAI (Secondary Market) <span class="sector-badge">ARTIFICIAL INTELLIGENCE</span></h4>
+                                        <p>> Target: AGI Development & Enterprise Licensing.</p>
+                                        <div class="deal-metrics">
+                                            <span>MIN. TICKET: $2.0M</span>
+                                            <span>AVAILABLE: <b style="color:#ff3b30;">$800K</b></span>
+                                        </div>
+                                        <div class="allocation-bar"><div class="allocation-fill" style="width: 96%; background: #ff3b30; box-shadow: 0 0 8px #ff3b30;"></div></div>
+                                        <p style="font-size: 9px; text-align: right; margin-top: 5px; color: #ff3b30; font-weight: bold; font-family: 'Courier New', monospace;">96% SUBSCRIBED (CLOSING SOON)</p>
+                                    </div>
+                                    <button class="commit-btn" onclick="commitCapital(this, 'OpenAI', '$2.0M')">COMMIT CAPITAL</button>
+                                </div>
+
+                                <div class="deal-item" style="border-bottom: none; padding-bottom: 5px;">
+                                    <div class="deal-info">
+                                        <h4>Rimac Group (Pre-IPO) <span class="sector-badge">HYPERCAR / EV TECH</span></h4>
+                                        <p>> Target: Battery Tech Expansion & Bugatti Rimac JV.</p>
+                                        <div class="deal-metrics">
+                                            <span>MIN. TICKET: $500K</span>
+                                            <span>AVAILABLE: <b style="color:#00ff88;">$2.5M</b></span>
+                                        </div>
+                                        <div class="allocation-bar"><div class="allocation-fill" style="width: 65%; background: #00ff88;"></div></div>
+                                        <p style="font-size: 9px; text-align: right; margin-top: 5px; color: #00ff88; font-weight: bold; font-family: 'Courier New', monospace;">65% SUBSCRIBED</p>
+                                    </div>
+                                    <button class="commit-btn" onclick="commitCapital(this, 'Rimac', '$500K')">COMMIT CAPITAL</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="hft-terminal-grid" style="margin-top: 20px;">
+
+                            <div class="hft-panel order-book-panel">
+                                <div class="hft-header">
+                                    <h3 class="translatable" data-en="DARK POOL ORDER BOOK"
+                                        data-id="BUKU PESANAN DARK POOL">DARK POOL ORDER BOOK</h3>
+                                    <span class="live-indicator">LIVE</span>
+                                </div>
+                                <div class="ob-columns">
+                                    <span class="translatable" data-en="Price (USD)" data-id="Harga (USD)">Price
+                                        (USD)</span>
+                                    <span class="translatable" data-en="Size" data-id="Ukuran">Size</span>
+                                    <span class="translatable" data-en="Total" data-id="Total">Total</span>
+                                </div>
+
+                                <div class="ob-asks" id="ob-asks">
+                                </div>
+
+                                <div class="ob-spread">
+                                    <h2 id="ob-current-price" style="color: #00ff88;">$142.50</h2>
+                                    <span style="color: #888; font-size: 11px;">Spread: $0.05</span>
+                                </div>
+
+                                <div class="ob-bids" id="ob-bids">
+                                </div>
+                            </div>
+
+                            <div class="hft-panel tape-panel">
+                                <div class="hft-header">
+                                    <h3 class="translatable" data-en="TIME & SALES (TAPE)"
+                                        data-id="WAKTU & PENJUALAN (TAPE)">TIME & SALES (TAPE)</h3>
+                                </div>
+                                <div class="ob-columns">
+                                    <span class="translatable" data-en="Time" data-id="Waktu">Time</span>
+                                    <span class="translatable" data-en="Price" data-id="Harga">Price</span>
+                                    <span class="translatable" data-en="Vol" data-id="Vol">Vol</span>
+                                </div>
+                                <div class="tape-feed" id="live-tape-feed">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="market-grid">
+                            <div class="sniper-panel"
+                                style="background: rgba(10,0,0,0.6); border: 1px solid #ff3b30; border-radius: 12px; padding: 25px; box-shadow: inset 0 0 20px rgba(255,59,48,0.1); position: relative; overflow: hidden;">
+                                <div class="sniper-crosshair" id="sniper-crosshair">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke="#ff3b30" stroke-width="1"
+                                            stroke-dasharray="10, 5" />
+                                        <line x1="50" y1="0" x2="50" y2="100" stroke="#ff3b30" stroke-width="1" />
+                                        <line x1="0" y1="50" x2="100" y2="50" stroke="#ff3b30" stroke-width="1" />
+                                        <circle cx="50" cy="50" r="2" fill="#ff3b30" />
+                                    </svg>
+                                </div>
+
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #ff3b30; padding-bottom: 10px; margin-bottom: 15px; position: relative; z-index: 2;">
+                                    <h3 style="color: #ff3b30; font-size: 14px; letter-spacing: 2px; margin: 0;">
+                                        FLASH-CRASH SNIPER BOT</h3>
+                                    <span class="live-indicator"
+                                        style="border-color: #ff3b30; color: #ff3b30;">OFFLINE</span>
+                                </div>
+
+                                <div class="sniper-controls" style="position: relative; z-index: 2;">
+                                    <div class="swap-box"
+                                        style="border-color: rgba(255,59,48,0.3); background: rgba(0,0,0,0.8);">
+                                        <label style="color: #ff3b30;">TARGET ASSET</label>
+                                        <select style="color: #fff; border-bottom-color: #ff3b30;">
+                                            <option>BTC (Bitcoin) - Dark Pool</option>
+                                            <option>ETH (Ethereum) - Dark Pool</option>
+                                        </select>
+                                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                            <div style="flex: 1;">
+                                                <label style="color: #ff3b30; font-size: 9px;">EXECUTION DROP PRICE
+                                                    ($)</label>
+                                                <input type="number" value="59850"
+                                                    style="color: #00ff88; font-size: 16px;">
+                                            </div>
+                                            <div style="flex: 1;">
+                                                <label style="color: #ff3b30; font-size: 9px;">MAX CAPITAL (USD)</label>
+                                                <input type="number" value="250000"
+                                                    style="color: #fff; font-size: 16px;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="sniper-status"
+                                        style="font-family: 'Courier New', monospace; font-size: 11px; color: #888; margin-bottom: 15px; height: 35px; line-height: 1.5;">
+                                        > Bot is dormant.<br>> Awaiting executive arming sequence.
+                                    </div>
+
+                                    <button id="btn-arm-sniper" class="execute-btn"
+                                        style="background: rgba(255,59,48,0.1); border-color: #ff3b30; color: #ff3b30; margin-top: 0; position: relative; overflow: hidden;"
+                                        onclick="armSniperBot()">ARM SNIPER PROTOCOL</button>
+                                </div>
+                            </div>
+                            <div class="swap-panel">
+                                <h3>OTC QUICK SWAP</h3>
+                                <div class="swap-box">
+                                    <label>PAY (ASSET)</label>
+                                    <select>
+                                        <option>USDT (Tether)</option>
+                                        <option>USD (Fiat)</option>
+                                    </select>
+                                    <input type="number" placeholder="Enter amount (e.g., 50000)">
+                                </div>
+                                <div class="swap-icon">↕</div>
+                                <div class="swap-box">
+                                    <label>RECEIVE (ASSET)</label>
+                                    <select>
+                                        <option>BTC (Bitcoin)</option>
+                                        <option>NVDA (Stock)</option>
+                                    </select>
+                                    <input type="number" placeholder="Estimated Receive..." readonly>
+                                </div>
+                                <button class="execute-btn" onclick="openBiometric('OTC BLOCK TRADE')">EXECUTE BLOCK
+                                    TRADE</button>
+                                <div class="swap-warning">⚠ Routing through untraceable dark pool nodes. Slippage &lt;
+                                    0.01%</div>
+                            </div>
+                        </div>
+
+                        <div class="macro-news-terminal" style="margin-top: 30px;">
+                            <div class="news-header">
+                                <h3 class="translatable" data-en="MACRO-ECONOMIC INTELLIGENCE (GLOBAL FEED)"
+                                    data-id="INTELIJEN MAKRO-EKONOMI (UMPAN GLOBAL)">MACRO-ECONOMIC INTELLIGENCE (GLOBAL
+                                    FEED)</h3>
+                                <span class="live-indicator"
+                                    style="border-color: #ff3b30; color: #ff3b30; animation: pulseBearish 2s infinite; font-weight: bold; letter-spacing: 1px;">LIVE
+                                    FEED</span>
+                            </div>
+                            <div class="news-columns">
+                                <span>TIME (WIB)</span>
+                                <span>SOURCE</span>
+                                <span>HEADLINE / INTERCEPTED COMMS</span>
+                                <span style="text-align: right;">MARKET IMPACT</span>
+                            </div>
+                            <div class="news-feed-container" id="macro-news-feed">
+                            </div>
+                        </div>
+
+                        <div class="market-databank" style="margin-top: 30px; margin-bottom: 20px;">
+                            <div class="news-header" style="border-bottom-color: #333; background: #050505; border-radius: 8px 8px 0 0;">
+                                <h3 style="color: #fff; letter-spacing: 2px; font-size: 13px;"><span class="icon" style="color:#00f3ff;">▤</span> GLOBAL ASSET DATABANK</h3>
+                                <span class="live-indicator" style="border-color: #00ff88; color: #00ff88;">REAL-TIME SYNC</span>
+                            </div>
+                            
+                            <div class="databank-table-container" style="max-height: 400px; overflow-y: auto; background: rgba(5,5,5,0.9); border: 1px solid #222; border-top: none; border-radius: 0 0 8px 8px;">
+                                <table style="width: 100%; border-collapse: collapse; font-family: 'Courier New', monospace; font-size: 11px; text-align: right;">
+                                    <thead style="position: sticky; top: 0; background: #111; color: #888; border-bottom: 1px dashed #333; z-index: 10;">
+                                        <tr>
+                                            <th style="text-align: left; padding: 12px 15px;">TICKER</th>
+                                            <th style="text-align: left; padding: 12px 10px;">ASSET NAME</th>
+                                            <th style="padding: 12px 10px; text-align: center;">CLASS</th>
+                                            <th style="padding: 12px 15px;">LAST PRICE</th>
+                                            <th style="padding: 12px 15px;">24H CHG</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="live-asset-grid">
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="history-view" class="view-section" style="display: none;">
+                        <div class="ghost-ledger">
+                            <div class="ledger-header">
+                                <h3>QUANTUM LEDGER // CLASSIFIED TRANSACTIONS</h3>
+                            </div>
+                            <div class="ledger-table">
+                                <div class="l-row header">
+                                    <span>DATE</span><span>TYPE</span><span>DESTINATION /
+                                        ASSET</span><span>AMOUNT</span><span>ACTION</span>
+                                </div>
+                                <div class="l-row">
+                                    <span>26.02.2026</span><span class="type-withdraw">WITHDRAW</span>
+                                    <span class="encrypted-data" data-real="CAYMAN OFFSHORE ACC">0x8F92...E4A1</span>
+                                    <span class="encrypted-data" data-real="Rp 250.000.000">0x...</span>
+                                    <button class="decrypt-btn" onclick="decryptRow(this)">DECRYPT</button>
+                                </div>
+                                <div class="l-row">
+                                    <span>24.02.2026</span><span class="type-deposit">DEPOSIT</span>
+                                    <span class="encrypted-data" data-real="SWISS BANK NODE 01">0x3A1B...9C22</span>
+                                    <span class="encrypted-data" data-real="$1,500,000">0x...</span>
+                                    <button class="decrypt-btn" onclick="decryptRow(this)">DECRYPT</button>
+                                </div>
+                                <div class="l-row">
+                                    <span>21.02.2026</span><span class="type-trade">EXECUTE</span>
+                                    <span class="encrypted-data" data-real="NVDA - DARK POOL BUY">0x55FA...110B</span>
+                                    <span class="encrypted-data" data-real="Rp 850.000.000">0x...</span>
+                                    <button class="decrypt-btn" onclick="decryptRow(this)">DECRYPT</button>
+                                </div>
+                                <div class="l-row">
+                                    <span>18.02.2026</span><span class="type-withdraw">WITHDRAW</span>
+                                    <span class="encrypted-data" data-real="UNKNOWN PRIVATE EQUITY">0x7B2C...4D99</span>
+                                    <span class="encrypted-data" data-real="$4,200,000">0x...</span>
+                                    <button class="decrypt-btn" onclick="decryptRow(this)">DECRYPT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="analytics-view" class="view-section" style="display: none;">
+                        <div class="section-header">
+                            <h2 class="translatable" data-en="Portfolio Intelligence" data-id="Intelijen Portofolio"
+                                style="margin-bottom: 20px;">Portfolio Intelligence</h2>
+                        </div>
+                        <div class="analytics-grid">
+                            <div class="analytic-card">
+                                <h3 class="translatable" data-en="Risk Metrics" data-id="Metrik Risiko">Risk Metrics
+                                </h3>
+                                <div class="metric-row"><span class="translatable" data-en="Sharpe Ratio (1Y)"
+                                        data-id="Rasio Sharpe (1T)">Sharpe Ratio (1Y)</span><strong
+                                        class="green">1.84</strong></div>
+                                <div class="metric-row"><span class="translatable" data-en="Beta (vs IHSG)"
+                                        data-id="Beta (vs IHSG)">Beta (vs IHSG)</span><strong>1.12</strong></div>
+                                <div class="metric-row"><span class="translatable" data-en="Max Drawdown"
+                                        data-id="Penurunan Maks">Max Drawdown</span><strong class="red">-8.4%</strong>
+                                </div>
+                                <div class="metric-row"><span class="translatable" data-en="Volatility (30D)"
+                                        data-id="Volatilitas (30H)">Volatility (30D)</span><strong>14.2%</strong></div>
+                            </div>
+                            <div class="analytic-card">
+                                <h3 class="translatable" data-en="Sector Allocation" data-id="Alokasi Sektor">Sector
+                                    Allocation</h3>
+                                <div class="sector-bar-container">
+                                    <div class="sector-label"><span class="translatable" data-en="Technology"
+                                            data-id="Teknologi">Technology</span> <span>45%</span></div>
+                                    <div class="sector-track">
+                                        <div class="sector-fill" style="width: 45%; background: #00f3ff;"></div>
+                                    </div>
+                                </div>
+                                <div class="sector-bar-container">
+                                    <div class="sector-label"><span class="translatable" data-en="Financials"
+                                            data-id="Keuangan">Financials</span> <span>30%</span></div>
+                                    <div class="sector-track">
+                                        <div class="sector-fill" style="width: 30%; background: #ffd700;"></div>
+                                    </div>
+                                </div>
+                                <div class="sector-bar-container">
+                                    <div class="sector-label"><span class="translatable" data-en="Energy / Mining"
+                                            data-id="Energi / Tambang">Energy / Mining</span> <span>15%</span></div>
+                                    <div class="sector-track">
+                                        <div class="sector-fill" style="width: 15%; background: #ff3b30;"></div>
+                                    </div>
+                                </div>
+                                <div class="sector-bar-container">
+                                    <div class="sector-label"><span class="translatable" data-en="Consumer Goods"
+                                            data-id="Barang Konsumsi">Consumer Goods</span> <span>10%</span></div>
+                                    <div class="sector-track">
+                                        <div class="sector-fill" style="width: 10%; background: #00ff88;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analytic-card full-width">
+                                <h3 class="translatable" data-en="Benchmark Comparison (YTD)"
+                                    data-id="Perbandingan Acuan (YTD)">Benchmark Comparison (YTD)</h3>
+                                <div class="benchmark-stats">
+                                    <div class="b-stat"><span class="translatable" data-en="Your Portfolio"
+                                            data-id="Portofolio Anda">Your Portfolio</span>
+                                        <h2 class="green">+12.45%</h2>
+                                    </div>
+                                    <div class="b-stat"><span>IHSG (Jakarta Composite)</span>
+                                        <h2 style="color: #888;">+4.20%</h2>
+                                    </div>
+                                    <div class="b-stat"><span>S&P 500</span>
+                                        <h2 style="color: #888;">+7.15%</h2>
+                                    </div>
+                                </div>
+                                <p style="color: var(--text-dim); font-size: 11px; margin-top: 15px; text-align: center; border-top: 1px dashed #333; padding-top: 10px;"
+                                    class="translatable" data-en="Alpha generated: +8.25% against primary benchmark."
+                                    data-id="Alpha dihasilkan: +8.25% terhadap acuan utama.">Alpha generated: +8.25%
+                                    against primary benchmark.</p>
+                            </div>
+                            <div class="analytic-card">
+                                <h3 class="translatable" data-en="Quantitative AI Forecast"
+                                    data-id="Prakiraan Kuantitatif AI">Quantitative AI Forecast</h3>
+                                <div class="metric-row">
+                                    <span class="translatable" data-en="Primary Signal" data-id="Sinyal Utama">Primary
+                                        Signal</span>
+                                    <strong class="green blinking-text translatable" data-en="STRONG BUY"
+                                        data-id="BELI KUAT">STRONG BUY</strong>
+                                </div>
+                                <div class="sector-bar-container" style="margin-top: 10px;">
+                                    <div class="sector-label"><span class="translatable" data-en="AI Confidence Level"
+                                            data-id="Tingkat Keyakinan AI">AI Confidence Level</span> <span>94.2%</span>
+                                    </div>
+                                    <div class="sector-track">
+                                        <div class="sector-fill ai-bar"
+                                            style="width: 94.2%; background: #00f3ff; box-shadow: 0 0 10px #00f3ff;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="translatable" data-en="30-Day Projection"
+                                        data-id="Proyeksi 30 Hari">30-Day Projection</span>
+                                    <strong class="green">+5.84%</strong>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="translatable" data-en="Algo Status" data-id="Status Algo">Algo
+                                        Status</span>
+                                    <strong class="translatable" data-en="Accumulating" data-id="Mengakumulasi"
+                                        style="color: #ffd700;">Accumulating</strong>
+                                </div>
+                            </div>
+
+                            <div class="analytic-card">
+                                <h3 class="translatable" data-en="Institutional Liquidity"
+                                    data-id="Likuiditas Institusi">Institutional Liquidity</h3>
+                                <div class="metric-row">
+                                    <span class="translatable" data-en="Dark Pool Buy Wall"
+                                        data-id="Tembok Beli Dark Pool">Dark Pool Buy Wall</span>
+                                    <strong class="green">$42.5M</strong>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="translatable" data-en="Dark Pool Sell Wall"
+                                        data-id="Tembok Jual Dark Pool">Dark Pool Sell Wall</span>
+                                    <strong class="red">$14.2M</strong>
+                                </div>
+                                <div class="sector-bar-container" style="margin-top: 10px;">
+                                    <div class="sector-label"><span class="translatable"
+                                            data-en="Whale Accumulation Zone" data-id="Zona Akumulasi Paus">Whale
+                                            Accumulation Zone</span> <span>85.0%</span></div>
+                                    <div class="sector-track">
+                                        <div class="sector-fill ai-bar"
+                                            style="width: 85%; background: #00ff88; box-shadow: 0 0 10px #00ff88;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="translatable" data-en="Order Flow Toxicity"
+                                        data-id="Toksisitas Aliran Order">Order Flow Toxicity</span>
+                                    <strong style="color: #00f3ff;" class="translatable" data-en="12% (Safe)"
+                                        data-id="12% (Aman)">12% (Safe)</strong>
+                                </div>
+                            </div>
+
+                            <div class="analytic-card full-width">
+                                <h3 class="translatable" data-en="Asset Correlation Engine"
+                                    data-id="Mesin Korelasi Aset">Asset Correlation Engine</h3>
+                                <div class="benchmark-stats" style="justify-content: space-between;">
+                                    <div class="b-stat">
+                                        <span>NVDA / BTC</span>
+                                        <h2 style="color: #00f3ff; font-size: 22px;">+0.85</h2>
+                                        <small class="translatable" data-en="Highly Correlated"
+                                            data-id="Korelasi Tinggi" style="color: #888;">Highly Correlated</small>
+                                    </div>
+                                    <div class="b-stat">
+                                        <span>TECH / GOLD</span>
+                                        <h2 style="color: #ff3b30; font-size: 22px;">-0.62</h2>
+                                        <small class="translatable" data-en="Inverse" data-id="Terbalik"
+                                            style="color: #888;">Inverse</small>
+                                    </div>
+                                    <div class="b-stat">
+                                        <span>BBCA / S&P500</span>
+                                        <h2 style="color: #ffd700; font-size: 22px;">+0.34</h2>
+                                        <small class="translatable" data-en="Neutral" data-id="Netral"
+                                            style="color: #888;">Neutral</small>
+                                    </div>
+                                    <div class="b-stat">
+                                        <span>USD / IDR</span>
+                                        <h2 style="color: #ff3b30; font-size: 22px;">-0.15</h2>
+                                        <small class="translatable" data-en="Diverging" data-id="Bercabang"
+                                            style="color: #888;">Diverging</small>
+                                    </div>
+                                </div>
+                                <p style="color: var(--text-dim); font-size: 11px; margin-top: 15px; text-align: center; border-top: 1px dashed #333; padding-top: 10px;"
+                                    class="translatable"
+                                    data-en="Running 10,000 Monte Carlo simulations based on 5-year historical data."
+                                    data-id="Menjalankan 10.000 simulasi Monte Carlo berdasarkan data historis 5-tahun.">
+                                    Running 10,000 Monte Carlo simulations based on 5-year historical data.
+                                </p>
+                            </div>
+                            <div class="analytic-card full-width"
+                                style="border-color: #9b59b6; box-shadow: inset 0 0 20px rgba(155, 89, 182, 0.1);">
+                                <h3 class="translatable" data-en="Tax-Shield Protocol (Loss Harvesting)"
+                                    data-id="Protokol Pelindung Pajak (Panen Rugi)"
+                                    style="color: #9b59b6; border-bottom-color: rgba(155, 89, 182, 0.3);">Tax-Shield
+                                    Protocol</h3>
+
+                                <div id="tax-shield-idle">
+                                    <p style="color: #888; font-size: 12px; margin-bottom: 15px;" class="translatable"
+                                        data-en="Scan portfolio for unrealized losses to offset end-of-year capital gains tax."
+                                        data-id="Pindai portofolio untuk kerugian berjalan guna memotong pajak keuntungan modal akhir tahun.">
+                                        Scan portfolio for unrealized losses to offset end-of-year capital gains tax.
+                                    </p>
+                                    <button class="execute-btn"
+                                        style="width: 100%; border-color: #9b59b6; color: #9b59b6; background: transparent;"
+                                        onclick="runTaxShieldScan()">INITIATE DEEP SCAN</button>
+                                </div>
+
+                                <div id="tax-shield-active" style="display: none;">
+                                    <div class="scanner-loading" id="tax-loading" style="height: 60px; color: #9b59b6;">
+                                        <div class="scan-line-horizontal"
+                                            style="background: #9b59b6; box-shadow: 0 0 10px #9b59b6;"></div>
+                                        <p>> Auditing fiscal ledgers...</p>
+                                        <p>> Calculating capital gains offset...</p>
+                                    </div>
+
+                                    <div id="tax-results" style="display: none;">
+                                        <div class="metric-row">
+                                            <span class="translatable" data-en="Eligible Assets (Loss)"
+                                                data-id="Aset Memenuhi Syarat (Rugi)">Eligible Assets (Loss)</span>
+                                            <strong class="red">GOTO, ASII</strong>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span class="translatable" data-en="Total Harvestable Loss"
+                                                data-id="Total Rugi Dapat Dipanen">Total Harvestable Loss</span>
+                                            <strong class="red">- Rp 42.500.000</strong>
+                                        </div>
+                                        <div class="metric-row"
+                                            style="border-top: 1px dashed #444; margin-top: 10px; padding-top: 15px;">
+                                            <span class="translatable" data-en="ESTIMATED TAX SAVED (22%)"
+                                                data-id="ESTIMASI PAJAK HEMAT (22%)"
+                                                style="color: #00ff88; font-weight: bold;">ESTIMATED TAX SAVED
+                                                (22%)</span>
+                                            <strong class="green blinking-text">+ Rp 9.350.000</strong>
+                                        </div>
+                                        <button class="execute-btn"
+                                            style="width: 100%; margin-top: 15px; background: rgba(155, 89, 182, 0.15); border-color: #9b59b6; color: #fff;"
+                                            onclick="openBiometric('LIQUIDATE & REINVEST')">EXECUTE TAX HARVEST</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analytic-card full-width"
+                                style="border-color: #00f3ff; box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05); margin-top: 10px;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(0, 243, 255, 0.3); padding-bottom: 15px; margin-bottom: 15px;">
+                                    <h3
+                                        style="color: #00f3ff; margin: 0; display: flex; align-items: center; gap: 10px;">
+                                        <span class="pulse-dot"
+                                            style="background: #00f3ff; box-shadow: 0 0 8px #00f3ff;"></span> GLOBAL TAX
+                                        SHIELD ROUTING
+                                    </h3>
+                                    <span
+                                        style="font-family: 'Courier New', monospace; font-size: 10px; color: #00ff88; border: 1px solid #00ff88; padding: 3px 8px; border-radius: 12px; background: rgba(0,255,136,0.1);">ACTIVE</span>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                    <div>
+                                        <p
+                                            style="color: #888; font-size: 11px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+                                            Effective Corporate Tax Rate</p>
+                                        <h2
+                                            style="color: #00ff88; font-size: 38px; margin: 0; text-shadow: 0 0 15px rgba(0,255,136,0.3); font-family: 'Courier New', monospace;">
+                                            0.4%</h2>
+
+                                        <div
+                                            style="margin-top: 15px; padding: 10px; background: rgba(0,0,0,0.4); border: 1px solid #222; border-left: 2px solid #00f3ff; border-radius: 4px;">
+                                            <p
+                                                style="color: #00f3ff; font-size: 10px; font-family: 'Courier New', monospace; margin: 0 0 5px 0;">
+                                                > Legally optimized via Cayman Trust.</p>
+                                            <p
+                                                style="color: #888; font-size: 10px; font-family: 'Courier New', monospace; margin: 0;">
+                                                > Estimated Annual Savings: <span class="money" data-value="185000000"
+                                                    style="color: #fff; font-weight: bold;">Rp 185.000.000</span></p>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h4
+                                            style="color: #fff; font-size: 11px; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; letter-spacing: 1px;">
+                                            CAPITAL DISTRIBUTION NETWORK</h4>
+
+                                        <div class="sector-bar-container">
+                                            <div class="sector-label"><span>Cayman Islands (0% Tax)</span> <span
+                                                    style="color: #00f3ff; font-weight: bold;">45%</span></div>
+                                            <div class="sector-track">
+                                                <div class="sector-fill"
+                                                    style="width: 45%; background: #00f3ff; box-shadow: 0 0 8px #00f3ff;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sector-bar-container">
+                                            <div class="sector-label"><span>Zurich, CH (Privacy Node)</span> <span
+                                                    style="color: #d4af37; font-weight: bold;">30%</span></div>
+                                            <div class="sector-track">
+                                                <div class="sector-fill" style="width: 30%; background: #d4af37;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="sector-bar-container">
+                                            <div class="sector-label"><span>Panama LLC (Corporate)</span> <span
+                                                    style="color: #ff3b30; font-weight: bold;">15%</span></div>
+                                            <div class="sector-track">
+                                                <div class="sector-fill" style="width: 15%; background: #ff3b30;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="sector-bar-container">
+                                            <div class="sector-label"><span>Local IDR (Operating)</span> <span
+                                                    style="color: #888; font-weight: bold;">10%</span></div>
+                                            <div class="sector-track">
+                                                <div class="sector-fill" style="width: 10%; background: #555;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="analytic-card full-width" style="margin-top: 20px; border-color: #d4af37; box-shadow: inset 0 0 20px rgba(212,175,55,0.05);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 15px; margin-bottom: 15px;">
+                                    <h3 style="color: #d4af37; margin: 0; display: flex; align-items: center; gap: 10px;">
+                                        <span class="pulse-dot" style="background: #d4af37; box-shadow: 0 0 8px #d4af37;"></span> QUANTUM YIELD FORECASTER (10-YEAR)
+                                    </h3>
+                                    <span style="font-family: 'Courier New', monospace; font-size: 10px; color: #00ff88; border: 1px solid #00ff88; padding: 3px 8px; border-radius: 12px; background: rgba(0,255,136,0.1);">COMPOUNDING ACTIVE</span>
+                                </div>
+                                
+                                <div style="display: flex; gap: 40px; margin-bottom: 20px;">
+                                    <div>
+                                        <p style="color: #888; font-size: 10px; margin: 0 0 5px 0; letter-spacing: 1px;">PROJECTED AUM (2036)</p>
+                                        <h2 style="color: #00ff88; margin: 0; font-size: 26px; text-shadow: 0 0 10px rgba(0,255,136,0.3);">Rp 512.450.000.000</h2>
+                                    </div>
+                                    <div>
+                                        <p style="color: #888; font-size: 10px; margin: 0 0 5px 0; letter-spacing: 1px;">ALGORITHMIC ANNUAL YIELD</p>
+                                        <h2 style="color: #fff; margin: 0; font-size: 26px; font-family: 'Courier New', monospace;">18.5% <span style="font-size: 14px; color: #d4af37;">(AVG)</span></h2>
+                                    </div>
+                                </div>
+                                
+                                <div style="position: relative; height: 250px; width: 100%; background: #050505; border: 1px solid #222; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,0.8);">
+                                    <div class="scan-line-vertical" style="position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: rgba(0,243,255,0.5); box-shadow: 0 0 10px #00f3ff; animation: scanRight 6s infinite linear; z-index: 2; pointer-events: none;"></div>
+                                    
+                                    <canvas id="quantumChart" style="width: 100%; height: 100%; display: block;"></canvas>
+                                </div>
+                            </div>
+
+                                <button class="execute-btn"
+                                    style="width: 100%; margin-top: 20px; background: rgba(0, 243, 255, 0.05); border-color: #00f3ff; color: #00f3ff; font-size: 11px; letter-spacing: 2px;"
+                                    onclick="rebalanceTaxShield(this)">> REBALANCE OFFSHORE NODES</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="settings-view" class="view-section" style="display: none;">
+                        <div class="history-header">
+                            <h2>Executive Profile & System</h2>
+                            <p>BIOMETRIC PREFERENCES // SECURITY CLEARANCE LEVEL: MAXIMUM</p>
+                        </div>
+                        <div class="settings-grid">
+                            <div class="settings-card profile-card">
+                                <div class="profile-frame" onclick="openProfileModal()" style="cursor: zoom-in;">
+                                    <div class="ring-light"></div>
+                                    <div class="profile-avatar"></div>
+
+                                    <div class="premium-badge">
+                                        <span class="crown">&#x265B;&#xFE0E;</span> PREMIUM PASS
+                                    </div>
+                                </div>
+                                <h3 class="profile-name">Rehan Taufikurohman Al Fauzi</h3>
+                                <p class="profile-title" style="margin-bottom: 25px;">VIP Executive Pass - Node 01</p>
+                                <div class="holo-card-container" id="holo-card-container">
+                                    <div class="holo-card" id="holo-card">
+                                        <div class="holo-shine" id="holo-shine"></div>
+                                        <div class="card-content">
+                                            <div class="card-top">
+                                                <svg class="chip" width="35" height="25" viewBox="0 0 35 25"
+                                                    fill="none">
+                                                    <rect width="35" height="25" rx="4" fill="#d4af37" />
+                                                    <path d="M5 0V25" stroke="#998336" stroke-width="0.5" />
+                                                    <path d="M30 0V25" stroke="#998336" stroke-width="0.5" />
+                                                    <path d="M0 12.5H35" stroke="#998336" stroke-width="0.5" />
+                                                    <path d="M0 5H10" stroke="#998336" stroke-width="0.5" />
+                                                    <path d="M25 5H35" stroke="#998336" stroke-width="0.5" />
+                                                    <path d="M0 20H10" stroke="#998336" stroke-width="0.5" />
+                                                    <path d="M25 20H35" stroke="#998336" stroke-width="0.5" />
+                                                </svg>
+                                            </div>
+                                            <div class="card-number"><span>4895</span> <span>****</span>
+                                                <span>****</span> <span>9021</span>
+                                            </div>
+                                            <div class="card-bottom">
+                                                <div class="card-holder"><small>CARD HOLDER</small>
+                                                    <div>REHAN T. A. F</div>
+                                                </div>
+                                                <div class="card-expiry"><small>EXPIRES</small>
+                                                    <div>12/30</div>
+                                                </div>
+                                                <div class="card-logo">MG</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="ledger-btn" style="margin-top: 25px; width: 100%;">UPDATE
+                                    DOSSIER</button>
+                            </div>
+                            <div class="settings-card">
+                                <h3>Security & Authentication</h3>
+                                <div class="setting-item">
+                                    <div>
+                                        <h4>Biometric Protocol</h4>
+                                        <p>Require fingerprint for all major transactions</p>
+                                    </div>
+                                    <label class="toggle-switch"><input type="checkbox" checked><span
+                                            class="slider"></span></label>
+                                </div>
+                                <div class="setting-item">
+                                    <div>
+                                        <h4>DEFCON Terminal Auto-Lock</h4>
+                                        <p>Freeze network on unauthorized access</p>
+                                    </div>
+                                    <label class="toggle-switch"><input type="checkbox" checked><span
+                                            class="slider"></span></label>
+                                </div>
+                                <h3 style="margin-top: 30px;">Acoustic & Interface</h3>
+                                <div class="setting-item">
+                                    <div>
+                                        <h4>Acoustic UI (Sound Engine)</h4>
+                                        <p>Enable haptic audio feedback and synth alarms</p>
+                                    </div>
+                                    <label class="toggle-switch"><input type="checkbox" checked><span
+                                            class="slider"></span></label>
+                                </div>
+                                <div class="setting-item">
+                                    <div>
+                                        <h4>Stealth Mode</h4>
+                                        <p>Auto-blur sensitive numbers on idle</p>
+                                    </div>
+                                    <label class="toggle-switch"><input type="checkbox"><span
+                                            class="slider"></span></label>
+                                </div>
+                            </div>
+                            <div class="settings-card full-width"
+                                style="grid-column: 1 / -1; margin-top: 10px; border-color: #d4af37; box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05);">
+                                <h3 class="translatable" data-en="Client Tier Status" data-id="Status Tingkat Klien"
+                                    style="color: #d4af37; border-bottom-color: rgba(212, 175, 55, 0.3);">Client Tier
+                                    Status</h3>
+
+                                <div class="tier-progress-container" style="margin: 25px 0;">
+                                    <div class="tier-progress-container" style="margin: 25px 0;">
+
+                                        <div class="tier-badges-row">
+                                            <div class="tier-badge silver-badge"
+                                                onclick="showTierBenefits('silver', this)">
+                                                <span class="icon">♦</span>
+                                                <span class="badge-name">SILVER</span>
+                                                <small>50M</small>
+                                            </div>
+
+                                            <div class="tier-badge gold-badge" onclick="showTierBenefits('gold', this)">
+                                                <span class="icon">★</span>
+                                                <span class="badge-name">GOLD</span>
+                                                <small>200M</small>
+                                            </div>
+
+                                            <div class="tier-badge platinum-badge"
+                                                onclick="showTierBenefits('platinum', this)">
+                                                <span class="icon">✦</span>
+                                                <span class="badge-name">PLATINUM</span>
+                                                <small>500M</small>
+                                            </div>
+
+                                            <div class="tier-badge omega-badge active-tier active-tier-select"
+                                                onclick="showTierBenefits('omega', this)">
+                                                <span class="icon crown">&#x265B;&#xFE0E;</span>
+                                                <span class="badge-name">VIP OMEGA</span>
+                                                <small>1B+</small>
+                                            </div>
+                                        </div>
+                                        <div
+                                            style="width: 100%; height: 8px; background: #222; border-radius: 4px; overflow: hidden; border: 1px solid #333; margin-top: 15px;">
+                                            <div
+                                                style="width: 100%; height: 100%; background: linear-gradient(90deg, #aaa 10%, #ffd700 40%, #b57e18 70%, #ff0303 100%); box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); animation: tierShine 3s infinite linear;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="tier-benefits-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 30px;">
+                                    
+                                    <div id="tier-benefits-box" class="benefit-box" style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid #d4af37; transition: all 0.3s; box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05);">
+                                        <h4 id="tier-benefits-title" style="color: #d4af37; font-size: 12px; margin-bottom: 12px; letter-spacing: 1px;">VIP OMEGA PRIVILEGES</h4>
+                                        <ul id="tier-benefits-list" style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: #888; line-height: 1.8;">
+                                            <li><span style="color: #00ff88;">✓</span> 0% Trade Commission (Zero-Fee)</li>
+                                            <li><span style="color: #00ff88;">✓</span> Priority Dark Pool Order Routing</li>
+                                            <li><span style="color: #00ff88;">✓</span> 24/7 Dedicated Concierge Access</li>
+                                            <li><span style="color: #00ff88;">✓</span> Automated Tax-Shield Protocol</li>
+                                            <li><span style="color: #00ff88;">✓</span> Offshore Node Transfers (Unlimited)</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="aum-box" style="background: rgba(212, 175, 55, 0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.3); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                                        <p style="color: #d4af37; font-size: 10px; margin-bottom: 10px; letter-spacing: 2px; font-weight: bold;">TOTAL AUM</p>
+                                        <h3 class="money" data-value="1601100000" style="color: #fff; font-size: 20px; margin: 0 0 10px 0; text-shadow: 0 0 10px rgba(255,255,255,0.2);">Rp 1.601.100.000</h3>
+                                        <span style="background: #d4af37; color: #000; font-size: 9px; padding: 3px 8px; border-radius: 12px; font-weight: bold;">MAX TIER REACHED</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            
+                        <div class="settings-card">
+                            <h3 class="translatable" data-en="Linked Nodes & Wallets" data-id="Node & Dompet Terhubung">
+                                Linked Nodes & Wallets</h3>
+
+                            <div class="node-item">
+                                <div class="node-info">
+                                    <h4>BCA Prioritas</h4>
+                                    <p>Local IDR Routing</p>
+                                </div>
+                                <span class="node-status status-connected">CONNECTED</span>
+                            </div>
+
+                            <div class="node-item">
+                                <div class="node-info">
+                                    <h4>Swiss Bank Node 01</h4>
+                                    <p>Offshore USD Vault</p>
+                                </div>
+                                <span class="node-status status-encrypted">ENCRYPTED</span>
+                            </div>
+
+                            <div class="node-item" style="border-bottom: none;">
+                                <div class="node-info">
+                                    <h4>Ledger Cold Storage</h4>
+                                    <p>Quantum Vault Protocol</p>
+                                </div>
+                                <span class="node-status status-synced">SYNCED</span>
+                            </div>
+
+                            <button class="execute-btn"
+                                style="width: 100%; margin-top: 15px; background: transparent; color: #888; border: 1px dashed #444; font-size: 11px;">+
+                                AUTHORIZE NEW NODE</button>
+                        </div>
+                        <div class="settings-card">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #333; padding-bottom: 10px; margin-bottom: 20px;">
+                                <h3 class="translatable" data-en="Fee Savings Audit" data-id="Audit Penghematan Biaya"
+                                    style="margin: 0; color: #fff;">Fee Savings Audit</h3>
+                                <span
+                                    style="font-family: 'Courier New', monospace; font-size: 10px; color: #888; border: 1px solid #333; padding: 2px 8px; border-radius: 4px;">YTD
+                                    REPORT</span>
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 25px;">
+                                <div>
+                                    <p
+                                        style="color: #888; font-size: 11px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+                                        Saved on Commissions</p>
+                                    <h2 class="money" data-value="14250000"
+                                        style="color: #00ff88; font-size: 28px; margin: 0; text-shadow: 0 0 10px rgba(0,255,136,0.2);">
+                                        Rp 14.250.000</h2>
+                                </div>
+                                <div style="text-align: right;">
+                                    <p
+                                        style="color: #888; font-size: 11px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+                                        Zero-Fee Trades</p>
+                                    <h2
+                                        style="color: #fff; font-size: 28px; margin: 0; font-family: 'Courier New', monospace;">
+                                        124</h2>
+                                </div>
+                            </div>
+
+                            <div class="savings-breakdown">
+                                <div class="s-row">
+                                    <span class="translatable" data-en="Brokerage Fees Avoided"
+                                        data-id="Bebas Biaya Pialang">Brokerage Fees Avoided</span>
+                                    <span class="money" data-value="9500000">Rp 9.500.000</span>
+                                </div>
+                                <div class="s-row">
+                                    <span class="translatable" data-en="Offshore Transfer Fees"
+                                        data-id="Biaya Transfer Lepas Pantai">Offshore Transfer Fees</span>
+                                    <span class="money" data-value="3200000">Rp 3.200.000</span>
+                                </div>
+                                <div class="s-row" style="border-bottom: none;">
+                                    <span class="translatable" data-en="Premium Dark Pool Access"
+                                        data-id="Akses Dark Pool Premium">Premium Dark Pool Access</span>
+                                    <span class="money" data-value="1550000">Rp 1.550.000</span>
+                                </div>
+                            </div>
+
+                            <button class="execute-btn"
+                                style="width: 100%; margin-top: 15px; background: transparent; border-color: #333; color: #888; font-size: 11px;"
+                                onclick="if(typeof playPremiumClick === 'function') playPremiumClick();">DOWNLOAD AUDIT
+                                REPORT (.PDF)</button>
+                        </div>
+                        <div class="settings-card" style="margin-top: 20px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #333; padding-bottom: 10px; margin-bottom: 15px;">
+                                <h3 class="translatable" data-en="Delegated Access & Mandates"
+                                    data-id="Akses Mandat & Delegasi" style="margin: 0; color: #fff;">Delegated Access &
+                                    Mandates</h3>
+                                <span
+                                    style="font-family: 'Courier New', monospace; font-size: 10px; color: #888; border: 1px solid #333; padding: 2px 8px; border-radius: 4px;">3RD
+                                    PARTY</span>
+                            </div>
+
+                            <div class="delegate-list">
+                                <div class="delegate-item">
+                                    <div class="d-info">
+                                        <h4 style="color: #fff; font-size: 13px; margin: 0 0 4px 0;">
+                                            PricewaterhouseCoopers (PwC)</h4>
+                                        <p
+                                            style="color: #888; font-size: 11px; margin: 0; font-family: 'Courier New', monospace;">
+                                            Role: Tax Auditor • Last Login: 2D ago</p>
+                                    </div>
+                                    <span
+                                        style="background: rgba(0, 243, 255, 0.1); color: #00f3ff; border: 1px solid #00f3ff; padding: 3px 8px; border-radius: 4px; font-size: 9px; font-weight: bold; letter-spacing: 1px;">READ-ONLY</span>
+                                </div>
+
+                                <div class="delegate-item" style="border-bottom: none; padding-bottom: 0;">
+                                    <div class="d-info">
+                                        <h4 style="color: #fff; font-size: 13px; margin: 0 0 4px 0;">Family Office &
+                                            Legal Counsel</h4>
+                                        <p
+                                            style="color: #888; font-size: 11px; margin: 0; font-family: 'Courier New', monospace;">
+                                            Role: Estate Planning • Last Login: 1M ago</p>
+                                    </div>
+                                    <span
+                                        style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid #d4af37; padding: 3px 8px; border-radius: 4px; font-size: 9px; font-weight: bold; letter-spacing: 1px;">RESTRICTED</span>
+                                </div>
+                            </div>
+
+                            <button class="execute-btn"
+                                style="width: 100%; margin-top: 20px; background: transparent; border-color: #333; color: #888; font-size: 11px;"
+                                onclick="if(typeof playPremiumClick === 'function') playPremiumClick();">+ GRANT NEW
+                                ACCESS</button>
+                        </div>
+                        <div class="settings-card">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #333; padding-bottom: 10px; margin-bottom: 15px;">
+                                <h3 class="translatable" data-en="Active Network Sessions" data-id="Sesi Jaringan Aktif"
+                                    style="margin: 0;">Active Network Sessions</h3>
+                                <span class="live-indicator"
+                                    style="animation: pulseBullish 2s infinite; border-color: #00f3ff; color: #00f3ff;">MONITORING</span>
+                            </div>
+
+                            <div class="session-list">
+                                <div class="session-item current-session">
+                                    <div class="session-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00ff88"
+                                            stroke-width="2">
+                                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                            <rect x="9" y="9" width="6" height="6"></rect>
+                                            <line x1="9" y1="1" x2="9" y2="4"></line>
+                                            <line x1="15" y1="1" x2="15" y2="4"></line>
+                                            <line x1="9" y1="20" x2="9" y2="23"></line>
+                                            <line x1="15" y1="20" x2="15" y2="23"></line>
+                                            <line x1="20" y1="9" x2="23" y2="9"></line>
+                                            <line x1="20" y1="14" x2="23" y2="14"></line>
+                                            <line x1="1" y1="9" x2="4" y2="9"></line>
+                                            <line x1="1" y1="14" x2="4" y2="14"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="session-info">
+                                        <h4>Terminal Node 01 <span
+                                                style="color: #00ff88; font-size: 8px; border: 1px solid #00ff88; padding: 2px 5px; border-radius: 4px; margin-left: 5px; letter-spacing: 1px;">THIS
+                                                DEVICE</span></h4>
+                                        <p>IP: 192.168.0.144 • Jakarta, ID</p>
+                                    </div>
+                                </div>
+
+                                <div class="session-item">
+                                    <div class="session-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4af37"
+                                            stroke-width="2">
+                                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="session-info">
+                                        <h4>Mobile Satellite Link</h4>
+                                        <p>IP: 45.33.x.x • Tokyo, JPN (Secure)</p>
+                                    </div>
+                                    <button class="terminate-btn" onclick="terminateSession(this)">REVOKE</button>
+                                </div>
+
+                                <div class="session-item threat-session">
+                                    <div class="session-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3b30"
+                                            stroke-width="2">
+                                            <path
+                                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                            </path>
+                                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="session-info">
+                                        <h4 style="color: #ff3b30;">Unauthorized Ping</h4>
+                                        <p>IP: 185.11.x.x • Moscow, RU</p>
+                                    </div>
+                                    <span
+                                        style="font-size: 10px; color: #ff3b30; font-weight: bold; letter-spacing: 1px;">BLOCKED</span>
+                                </div>
+                            </div>
+
+                            <button class="execute-btn"
+                                style="width: 100%; margin-top: 15px; background: rgba(255, 59, 48, 0.1); border-color: #ff3b30; color: #ff3b30; font-size: 11px;"
+                                onclick="openBiometric('PURGE ALL SESSIONS')">PURGE ALL EXTERNAL SESSIONS</button>
+                        </div>
+
+                        <div class="settings-card full-width"
+                            style="grid-column: 1 / -1; border-color: #d4af37; background: linear-gradient(145deg, rgba(10,10,10,0.9), rgba(15,15,15,0.9)); box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(212, 175, 55, 0.05);">
+                            <div
+                                style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px dashed rgba(212, 175, 55, 0.3); padding-bottom: 15px; margin-bottom: 15px;">
+                                <h3 class="translatable" data-en="VIP Concierge Protocol"
+                                    data-id="Protokol Pramutamu VIP"
+                                    style="color: #d4af37; margin: 0; display: flex; align-items: center; gap: 10px;">
+                                    <span class="pulse-dot"
+                                        style="background: #d4af37; box-shadow: 0 0 8px #d4af37;"></span> VIP Concierge
+                                    Protocol
+                                </h3>
+                                <span
+                                    style="font-family: 'Courier New', monospace; font-size: 10px; color: #00ff88; border: 1px solid #00ff88; padding: 3px 8px; border-radius: 12px; background: rgba(0, 255, 136, 0.1);">LINE
+                                    SECURE // 256-BIT</span>
+                            </div>
+
+                            <p style="color: #888; font-size: 12px; margin-bottom: 15px;" class="translatable"
+                                data-en="Direct encrypted line to your dedicated lifestyle manager. All requests are prioritized."
+                                data-id="Jalur terenkripsi langsung ke manajer gaya hidup dedikasi Anda. Semua permintaan diprioritaskan.">
+                                Direct encrypted line to your dedicated lifestyle manager. All requests are prioritized.
+                            </p>
+
+                            <div class="concierge-terminal">
+                                <select id="concierge-category" class="vip-input" style="margin-bottom: 10px;">
+                                    <option value="acquisition">Asset Acquisition (Vehicles / Real Estate)</option>
+                                    <option value="lifestyle">Lifestyle & Specialized Gear Sourcing</option>
+                                    <option value="travel">Global Travel & Private Charter</option>
+                                    <option value="event">Exclusive Event Access</option>
+                                </select>
+
+                                <textarea id="concierge-message" class="vip-input" rows="3"
+                                    placeholder="e.g., Requesting secure logistics for Nissan GT-R 35 Liberty Walk bodykit import, or sourcing a private 8K studio for 24MP fisheye lens test..."
+                                    style="resize: none;"></textarea>
+
+                                <div id="concierge-status"
+                                    style="display: none; font-family: 'Courier New', monospace; font-size: 11px; margin: 10px 0; color: #00f3ff;">
+                                    > Encrypting transmission...
+                                </div>
+
+                                <button class="execute-btn"
+                                    style="width: 100%; margin-top: 10px; background: rgba(212, 175, 55, 0.1); border-color: #d4af37; color: #d4af37; font-weight: bold; letter-spacing: 2px;"
+                                    onclick="dispatchConcierge()">DISPATCH PRIORITY REQUEST</button>
+                            </div>
+                        </div>
+                        <div class="settings-card full-width"
+                            style="grid-column: 1 / -1; border-color: #00f3ff; background: rgba(5, 10, 15, 0.85); box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05);">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(0, 243, 255, 0.3); padding-bottom: 15px; margin-bottom: 15px;">
+                                <h3 style="color: #00f3ff; margin: 0; display: flex; align-items: center; gap: 10px;">
+                                    <span class="pulse-dot"
+                                        style="background: #00f3ff; box-shadow: 0 0 8px #00f3ff;"></span> OFFSHORE NODE
+                                    GENERATOR
+                                </h3>
+                                <span
+                                    style="font-family: 'Courier New', monospace; font-size: 10px; color: #ff3b30; border: 1px solid #ff3b30; padding: 3px 8px; border-radius: 12px; background: rgba(255, 59, 48, 0.1);">CLASSIFIED
+                                    TOOL</span>
+                            </div>
+                            <p style="color: #888; font-size: 12px; margin-bottom: 15px;">Instantly provision
+                                untraceable shell accounts across global tax havens.</p>
+
+                            <button class="execute-btn"
+                                style="width: 100%; margin-bottom: 20px; background: rgba(0, 243, 255, 0.1); border-color: #00f3ff; color: #00f3ff; font-weight: bold; letter-spacing: 2px;"
+                                onclick="generateGhostAccount()">INITIATE GHOST PROTOCOL</button>
+
+                            <div id="ghost-account-list" style="display: flex; flex-direction: column; gap: 10px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card full-width" style="grid-column: 1 / -1; margin-top: 30px; border-color: #ffd700; background: linear-gradient(145deg, rgba(10,10,10,0.9), rgba(20,20,20,0.9)); box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 20px rgba(212,175,55,0.05); overflow: hidden; position: relative;">
+                            
+                            <div class="scan-line-horizontal" style="top: 0; background: #ffd700; opacity: 0.3;"></div>
+                            
+                            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px dashed rgba(212, 175, 55, 0.3); padding: 15px 20px; background: rgba(0,0,0,0.4);">
+                                <h3 style="color: #ffd700; margin: 0; display: flex; align-items: center; gap: 10px; font-family: 'Courier New', monospace; letter-spacing: 2px; border: none; padding: 0;"><span class="icon">&#x265B;&#xFE0E;</span> EXECUTIVE DOSSIER // RESTRICTED ACCESS</h3>
+                                <span style="font-family: 'Courier New', monospace; font-size: 10px; color: #ff3b30; border: 1px solid #ff3b30; padding: 3px 8px; border-radius: 12px; background: rgba(255,59,48,0.1);">OMEGA CLEARANCE</span>
+                            </div>
+                            
+                            <div class="dossier-body" style="display: grid; grid-template-columns: 180px 1fr; gap: 30px; padding: 30px 25px;">
+                                
+                                <div class="photo-vault" style="width: 180px; height: 180px; border: 2px solid #333; border-radius: 8px; background: #000; position: relative; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+                                    <img src="owner_photo.png" alt="Executive Photo" style="width: 100%; height: 100%; object-fit: cover; filter: contrast(110%) grayscale(10%); transition: all 0.5s;">
+                                    <div style="position: absolute; bottom: 5px; width: 100%; text-align: center; color: #ffd700; font-family: 'Courier New', monospace; font-size: 8px; text-shadow: 0 0 5px #000;">VERIFIED // LOUZY</div>
+                                </div>
+                                
+                                <div class="data-fields" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-family: 'Courier New', monospace; font-size: 11px;">
+                                    <div class="data-item"><small style="color: #666; text-transform: uppercase;">Full Legal Name</small><br><span style="color: #fff; font-size: 13px; font-weight: bold;">Rehan Taufikurohman Al Fauzi</span></div>
+                                    <div class="data-item"><small style="color: #666; text-transform: uppercase;">Designation / Alias</small><br><span style="color: #ffd700; font-size: 13px; font-weight: bold;">LOUZY</span></div>
+                                    
+                                    <div class="data-item"><small style="color: #666; text-transform: uppercase;">Date of Birth</small><br><span style="color: #fff; font-size: 12px;">17 Juni 2006</span></div>
+                                    <div class="data-item"><small style="color: #666; text-transform: uppercase;">National ID (NIK)</small><br><span style="color: #00f3ff; font-family: 'Courier New', monospace; font-weight: bold; letter-spacing: 1px;">3520071706060003</span></div>
+                                    
+                                    <div class="data-item"><small style="color: #666; text-transform: uppercase;">Current Status</small><br><span style="color: #00ff88; font-weight: bold;">MAHASISWA / ACTIVE NODE</span></div>
+                                    <div class="data-item"><small style="color: #666; text-transform: uppercase;">Security Clearance</small><br><span style="color: #ff3b30; font-weight: bold; text-shadow: 0 0 5px rgba(255,59,48,0.5);">LEVEL 6 OMEGA (Absolute)</span></div>
+                                    
+                                    <div class="data-item" style="grid-column: 1 / -1; margin-top: 10px; padding: 15px; background: rgba(0,0,0,0.4); border: 1px solid #333; border-left: 3px solid #ffd700; border-radius: 4px;">
+                                        <small style="color: #ffd700; text-transform: uppercase; font-weight: bold;">System Mandate</small><br>
+                                        <p style="color: #aaa; font-size: 11px; line-height: 1.6; margin: 5px 0 0 0;">Absolute executive oversight of all MG Securitas digital and physical nodes. GHOST PROTOCOL authorization confirmed. Identity verified via ID.3520071706060003.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="receipt-footer" style="padding: 10px 25px; border-top: 1px solid #222; background: rgba(5,5,5,0.5); display: flex; justify-content: space-between; align-items: center;"><div class="barcode" style="opacity: 0.3;">||| | || ||| | || |||| |</div><div class="stamp" style="font-size: 9px; border-color: #ffd700; color: #ffd700; padding: 4px 8px;">ENCRYPTED & SYNCED</div></div>
+                        </div>
+                </div>
+
+        </div>
+        </main>
+    </div>
+    </div>
+
+    <div id="focusModal" class="modal-overlay">
+        <div class="focus-content">
+            <div class="modal-header">
+                <h3 id="focus-ticker">TICKER</h3><span class="close-btn" onclick="closeFocusModal()">&times;</span>
+            </div>
+            <div class="focus-body">
+                <div class="focus-stats">
+                    <div class="stat-box">
+                        <p>Current Value</p>
+                        <h4 id="focus-value" class="sensitive-data">Rp 0</h4>
+                    </div>
+                    <div class="stat-box">
+                        <p>Total Volume</p>
+                        <h4 id="focus-shares">0 Lot</h4>
+                    </div>
+                    <div class="stat-box">
+                        <p>Unrealized Return</p>
+                        <h4 id="focus-return" class="sensitive-data">+0%</h4>
+                    </div>
+                </div>
+                <div class="focus-chart-placeholder">
+                    <p style="color: var(--text-dim); text-align: center; padding-top: 40px; font-size: 12px;">Detailed
+                        Chart View<br><span>(Simulated Data Analysis)</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div id="transactionModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Konfirmasi Order</h3><span class="close-btn" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message">Detail transaksi akan muncul di sini.</p>
+                <div class="modal-actions">
+                    <button class="btn-confirm" onclick="confirmTransaction()">Eksekusi</button>
+                    <button class="btn-cancel" onclick="closeModal()">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="biometricModal" class="modal-overlay">
+        <div class="biometric-content">
+            <div class="video-container" id="video-container" style="display: none;">
+                <video id="webcam-video" autoplay playsinline></video>
+                <div class="scanlines"></div>
+                <div class="tracking-box" id="tracking-box">
+                    <div class="corner tl"></div>
+                    <div class="corner tr"></div>
+                    <div class="corner bl"></div>
+                    <div class="corner br"></div>
+                </div>
+                <div class="cam-status">REC // OPTICAL SENSOR ACTIVE</div>
+            </div>
+            <h3 id="bio-action-title">SECURE ACCESS</h3>
+            <p class="bio-subtitle">Please authenticate to continue</p>
+            <div class="fingerprint-container">
+                <svg class="fp-icon" id="fp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" />
+                    <path d="M14 13.12c0 2.38 0 6.38-1 8.88" />
+                    <path
+                        d="M17.29 21.02c.12-.54.24-1.16.36-1.8c.49-2.58.33-5.01-1.08-7.22-.89-1.4-2.27-2.25-3.85-2.5-1.74-.29-3.33.39-4.32 1.49-.9.99-1.4 2.22-1.4 3.51V16" />
+                    <path d="M2 13.5v.5c0 .24.04.47.11.7" />
+                    <path d="M4.61 17.5c.23.41.52.81.85 1.18" />
+                    <path d="M7.42 20.3c.3.26.63.48.98.66" />
+                    <path d="M20.25 15.5c.12.5.2 1.02.22 1.56" />
+                    <path d="M22 13.5v-.5" />
+                    <path d="M19.34 9A9.97 9.97 0 0 0 12 6a9.98 9.98 0 0 0-7.34 3" />
+                    <path d="M16 6.88A7.02 7.02 0 0 0 12 6c-1.39 0-2.69.41-3.76 1.1" />
+                </svg>
+                <div class="scan-line" id="scan-line"></div>
+            </div>
+            <p class="bio-status" id="bio-status">Scanning fingerprint...</p>
+        </div>
+    </div>
+
+    <button class="concierge-fab" onclick="toggleConcierge()"><svg width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg></button>
+
+    <div class="concierge-panel" id="concierge-panel">
+        <div class="concierge-header">
+            <div>
+                <h4>VIP Concierge</h4><span class="status-dot"></span> <small>Online 24/7</small>
+            </div>
+            <button class="close-btn" onclick="toggleConcierge()">✕</button>
+        </div>
+        <div class="concierge-messages" id="concierge-messages">
+            <div class="message ai">Welcome back, Louzy. MG Securitas AI Concierge is at your service. How can I assist
+                you with your portfolio today?</div>
+        </div>
+        <div class="concierge-input">
+            <input type="text" id="concierge-text" placeholder="Type a command..."
+                onkeypress="handleConciergeInput(event)">
+            <button onclick="sendConciergeMessage()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg></button>
+        </div>
+    </div>
+
+    <button class="defcon-trigger" onclick="triggerDefcon()"><span class="hazard-stripes"></span>LOCKDOWN</button>
+
+    <div class="defcon-overlay" id="defcon-overlay">
+        <h1 class="glitch-text">SYSTEM SECURED</h1>
+        <p>DEFCON PROTOCOL ACTIVE. ALL ASSETS FROZEN.</p>
+        <button class="override-btn" onclick="openBiometric('DEFCON OVERRIDE')">AUTHORIZE BIOMETRIC OVERRIDE</button>
+    </div>
+
+    <div class="receipt-modal" id="receipt-modal">
+        <div class="receipt-content">
+            <div class="receipt-header">
+                <h3>MG SECURITAS // CLASSIFIED</h3><button class="close-receipt" onclick="closeReceipt()">✕</button>
+            </div>
+            <div class="receipt-body" id="receipt-body"></div>
+            <div class="receipt-footer">
+                <div class="barcode">||| | || ||| | || |||| |</div>
+                <div class="stamp">AUDITED & VERIFIED</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="profile-modal" class="profile-modal" onclick="closeProfileModal(event)">
+        <span class="close-profile">&times;</span>
+        <img class="profile-modal-content" id="large-profile-img">
+    </div>
+
+    <div class="offshore-modal" id="offshore-modal">
+        <div class="offshore-content">
+            <div class="offshore-header">
+                <h3>GHOST PROTOCOL: OFFSHORE ROUTING</h3><button class="close-receipt"
+                    onclick="closeOffshoreTransfer()">✕</button>
+            </div>
+            <div class="routing-nodes">
+                <div class="r-node" id="node-1">HQ ID</div>
+                <div class="r-line" id="line-1"></div>
+                <div class="r-node" id="node-2">CAYMAN</div>
+                <div class="r-line" id="line-2"></div>
+                <div class="r-node" id="node-3">ZURICH</div>
+                <div class="r-line" id="line-3"></div>
+                <div class="r-node" id="node-4">PANAMA</div>
+                <div class="r-line" id="line-4"></div>
+                <div class="r-node target" id="node-5">SECURED</div>
+            </div>
+            <div class="offshore-progress-container">
+                <div class="offshore-progress-bar" id="offshore-progress"></div>
+            </div>
+            <div class="offshore-terminal" id="offshore-terminal">> Initiating untraceable transfer sequence...<br>
+            </div>
+        </div>
+    </div>
+
+    <button id="quantum-switch" class="quantum-switch" onclick="toggleQuantumOverclock()">極</button>
+
+    <div class="scanner-panel-overlay" id="scanner-overlay" onclick="closeScanner(event)">
+        <div class="scanner-panel-content" id="scanner-content">
+            <div class="scanner-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span class="pulse-dot" style="background: #00f3ff; box-shadow: 0 0 8px #00f3ff;"></span>
+                    <h3>QUANTUM ASSET SCANNER // <span id="scan-ticker-name" style="color: #00f3ff;">---</span></h3>
+                </div>
+                <button class="close-btn" onclick="closeScanner(null, true)">✕</button>
+            </div>
+
+            <div class="scanner-body" id="scanner-body">
+                <div id="scanner-loading" class="scanner-loading">
+                    <div class="scan-line-horizontal"></div>
+                    <p>> Interrogating market nodes...</p>
+                    <p>> Fetching dark pool block trades...</p>
+                    <p>> Running fundamental algorithms...</p>
+                </div>
+
+                <div id="scanner-result" class="scanner-result" style="display: none;">
+                    <div class="scan-grid">
+                        <div class="scan-box">
+                            <small>P/E RATIO (TTM)</small>
+                            <h4 id="scan-pe">--</h4>
+                        </div>
+                        <div class="scan-box">
+                            <small>24H VOLUME</small>
+                            <h4 id="scan-vol">--</h4>
+                        </div>
+                        <div class="scan-box">
+                            <small>INST. HOLDING</small>
+                            <h4 id="scan-inst">--</h4>
+                        </div>
+                        <div class="scan-box">
+                            <small>AI SENTIMENT</small>
+                            <h4 id="scan-ai" class="green">--</h4>
+                        </div>
+                    </div>
+                    <button class="execute-btn" style="padding: 12px; font-size: 14px; width: 100%;"
+                        onclick="openBiometric('INSTITUTIONAL BUY')">EXECUTE TRADE TARGET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="asset-modal" class="modal-overlay">
+        <div class="asset-modal-content">
+            <div class="asset-modal-header">
+                <h3><span class="pulse-dot" style="background: #00f3ff; box-shadow: 0 0 8px #00f3ff;"></span> ASSET
+                    DOSSIER // <span id="am-id" style="color: #00f3ff;">CLASSIFIED</span></h3>
+                <span class="close-btn" onclick="closeAssetModal()">✕</span>
+            </div>
+            <div class="asset-modal-body">
+                <div class="asset-image-container">
+                    <img id="am-image" src="" alt="Asset Image">
+                    <div class="crosshair-overlay"></div>
+                    <div class="scan-line-horizontal" style="animation-duration: 3s;"></div>
+                </div>
+                <div class="asset-details-grid">
+                    <div class="ad-box full-width">
+                        <small>ASSET DESIGNATION</small>
+                        <h2 id="am-title">--</h2>
+                    </div>
+                    <div class="ad-box">
+                        <small>EST. MARKET VALUE</small>
+                        <h3 id="am-value" style="color: #00ff88;">--</h3>
+                    </div>
+                    <div class="ad-box">
+                        <small>VAULT STATUS</small>
+                        <h3 id="am-status">--</h3>
+                    </div>
+                    <div class="ad-box full-width"
+                        style="border-top: 1px dashed #333; margin-top: 10px; padding-top: 15px;">
+                        <small style="color: #00f3ff;">TECHNICAL SPECIFICATIONS & INTEL</small>
+                        <p id="am-desc"
+                            style="color: #ccc; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6; margin-top: 8px;">
+                            --</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
